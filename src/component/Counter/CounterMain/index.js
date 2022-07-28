@@ -1,4 +1,5 @@
 import React from "react";
+import s from "./CounterMain.module.css";
 
 const CounterMain = (props) => {
   const {
@@ -9,8 +10,8 @@ const CounterMain = (props) => {
     clickFrequency,
     handlerSetModeClickFrequency,
     startAutoClick,
+    fullTime,
   } = props;
-  console.log(props);
 
   const handlerSetCount = () => {
     setCount();
@@ -30,30 +31,47 @@ const CounterMain = (props) => {
 
   return (
     <>
-      <button onClick={handlerSetCount}>
-        {isModeAdd ? "Add Step" : "Sub Step"}
-      </button>
-      <br />
-      <label>
-        {isModeAdd ? "Add mode" : "Subtract mode"}
+      <div className={s.control_btns}>
+        <button className={`${s.btn_step} btn`} onClick={handlerSetCount}>
+          {isModeAdd ? "Add Step" : "Sub Step"}
+        </button>
         <input
+          id="isModeAdd"
+          className={s.mode_checkbox}
           type="checkbox"
+          name="isModeAdd"
           onChange={handlerChangeSetMode}
           checked={isModeAdd}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Select frequency:
+        />
+        <label htmlFor="isModeAdd" className={`${s.mode_box} btn`}>
+          {isModeAdd ? "Add mode" : "Sub mode"}
+        </label>
+      </div>
+      <div className={s.controls_frequency}>
+        <label className={s.click_frequency_box} htmlFor="clickFrequency">
+          Select frequency:
+        </label>
         <input
+          id="clickFrequency"
+          className={`${s.click_frequency} input`}
           type="number"
           value={clickFrequency}
           onChange={handlerChangeFrequency}
           step="1000"
         />
-      </label>
-      <button onClick={handlerSetAutoClick}>Auto Click</button>
-      <div>{count}</div>
+      </div>
+      <button
+        className={`${s.btn_auto_click} btn`}
+        onClick={handlerSetAutoClick}
+      >
+        Auto Click
+      </button>
+      <div className={s.count}>
+        Count: <span>{count}</span>
+      </div>
+      <div className={s.auto_clicker}>
+        Auto clicker lasted : <span>{fullTime}</span>
+      </div>
     </>
   );
 };

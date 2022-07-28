@@ -1,0 +1,100 @@
+.control_btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn_step {
+  margin-right: 5px;
+}
+
+.mode_box {
+  max-width: 100px;
+  width: 100%;
+
+  position: relative;
+
+  padding: 7px 15px 7px 30px;
+  margin-left: 5px;
+}
+
+.mode_box::after {
+  content: "";
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+
+  top: 7px;
+  left: 7px;
+
+  border: 2px solid teal;
+  border-radius: 3px;
+}
+
+.mode_box::before {
+  display: none;
+  content: "";
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  top: 11px;
+  left: 11px;
+
+  border-radius: 1px;
+
+  background-color: teal;
+}
+
+.mode_checkbox:checked + .mode_box::before {
+  display: block;
+}
+
+.mode_checkbox {
+  display: none;
+}
+
+.controls_frequency {
+  display: flex;
+  align-items: center;
+
+  margin-top: 40px;
+}
+
+.click_frequency_box {
+  flex-basis: 30%;
+  margin-right: 10px;
+  color: #fff;
+
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.click_frequency {
+  display: block;
+
+  flex-basis: 70%;
+
+  margin-bottom: 0;
+}
+
+.btn_auto_click{
+  display: block;
+  margin: 10px auto 0 auto;
+}
+
+.count,
+.auto_clicker{
+  margin-bottom: 10px;
+  color: #fff;
+
+  font-size: 16px;
+}
+
+.count span,
+.auto_clicker span {
+  font-weight: 700;
+  color: rgb(165, 21, 21);
+}
