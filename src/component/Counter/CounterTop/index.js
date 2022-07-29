@@ -8,12 +8,12 @@ class CounterTop extends Component {
     this.state = {
       step: 1,
       isModeAdd: true,
+      count: 0,
       clickFrequency: 1000,
       fullTime: "",
     };
-    this.count = 0;
+    // this.count = 0;
     this.timeId = null;
-    this.timeAutoClick = null;
   }
 
   handlerChangeStep = ({ target: { value } }) => {
@@ -26,6 +26,7 @@ class CounterTop extends Component {
   };
 
   handlerSetModeClickFrequency = (value) => {
+    console.log(value);
     this.setState({ clickFrequency: Number(value) });
   };
 
@@ -42,7 +43,7 @@ class CounterTop extends Component {
 
     if (this.timeId === null) {
       this.timeId = setInterval(() => {
-        if (currentTime + clickFrequency <= startTime + 30000) {
+        if (currentTime + clickFrequency <= startTime + 10000) {
           currentTime += clickFrequency;
           this.setCount();
         } else {
@@ -50,7 +51,6 @@ class CounterTop extends Component {
             fullTime: `${(currentTime - startTime) / 1000} seconds`,
           });
           clearInterval(this.timeId);
-          clearInterval(this.timeAutoClick);
           this.timeId = null;
         }
       }, clickFrequency);
@@ -62,9 +62,10 @@ class CounterTop extends Component {
   }
 
   setCount = () => {
-    const { step, isModeAdd } = this.state;
-    this.setState({ step: 1 });
-    return isModeAdd ? (this.count += step) : (this.count -= step);
+    const { step, isModeAdd, count } = this.state;
+    this.setState({
+      count: isModeAdd ? count + step : count - step,
+    });
   };
 
   render() {
@@ -84,7 +85,7 @@ class CounterTop extends Component {
           setCount={this.setCount}
           isModeAdd={this.state.isModeAdd}
           handlerSetMode={this.handlerSetMode}
-          count={this.count}
+          count={this.state.count}
           clickFrequency={this.state.clickFrequency}
           handlerSetModeClickFrequency={this.handlerSetModeClickFrequency}
           startAutoClick={this.startAutoClick}
