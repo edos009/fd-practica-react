@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./CounterMain.module.css";
+import PropTypes from "prop-types";
 
 const CounterMain = (props) => {
   const {
@@ -74,6 +75,27 @@ const CounterMain = (props) => {
       </div>
     </>
   );
+};
+
+CounterMain.defaultProps = {
+  count: 0,
+  isModeAdd: true,
+  clickFrequency: 1000,
+  fullTime: "",
+  setCount: () => {},
+  handlerSetMode: () => {},
+  startAutoClick: () => {},
+};
+
+CounterMain.propsTypes = {
+  setCount: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
+  isModeAdd: PropTypes.bool.isRequired,
+  handlerSetMode: PropTypes.func.isRequired,
+  clickFrequency: PropTypes.number.isRequired,
+  handlerSetModeClickFrequency: PropTypes.func.isRequired,
+  startAutoClick: PropTypes.func.isRequired,
+  fullTime: PropTypes.string.isRequired,
 };
 
 export default CounterMain;
